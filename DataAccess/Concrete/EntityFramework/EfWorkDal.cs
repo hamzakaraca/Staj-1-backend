@@ -1,5 +1,7 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,53 +11,16 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfWorkDal : IWorkDal
+    public class EfWorkDal : EfEntityRepositoryBase<Work, WorkCenterContext>, IWorkDal
     {
-       
-        public void Add(Work entity)
+        public List<WorkDetailDto> GetWorkDetails()
         {
-            //Burada performans kazancı olsun belleği çok oyalamasın diye böyle bir yol izledim.
-            using (WorkCenterContext context = new WorkCenterContext())
+            using (WorkCenterContext context=new WorkCenterContext())
             {
-                var addedEntity = context.Entry(entity);
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
-            }
-        }
-
-
-        public void Delete(Work entity)
-        {
-            using (WorkCenterContext context = new WorkCenterContext())
-            {
-                var deletedEntity = context.Entry(entity);
-                deletedEntity.State = EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
-
-        public Work Get(Expression<Func<Work, bool>> filter)
-        {
-            using (WorkCenterContext context = new WorkCenterContext())
-            {
-                return context.Set<Work>().SingleOrDefault(filter);
-            }
-        }
-
-        public List<Work> GetAll(Expression<Func<Work, bool>> filter = null)
-        {
-            using (WorkCenterContext context = new WorkCenterContext())
-            {
-                return filter == null ? context.Set<Work>().ToList() : context.Set<Work>().Where(filter).ToList();
-            }
-        }
-        public void Update(Work entity)
-        {
-            using (WorkCenterContext context = new WorkCenterContext())
-            {
-                var updatedEntity = context.Entry(entity);
-                updatedEntity.State = EntityState.Modified;
-                context.SaveChanges();
+                var result = from wo in context.Works
+                             join we in context.Workers on wo.WorkerId equals we.WorkerId
+                             select new WorkDetailDto {WorkId=wo.WorkId,WorkName=wo.WorkName,WorkerName=we.FirstName,ProgressStatus=wo.ProgressStatus,FinalDate=wo.FinalDate };
+                return result.ToList();
             }
         }
     }

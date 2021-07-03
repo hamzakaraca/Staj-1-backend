@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Linq.Expressions;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.InMemory
 {
@@ -16,8 +17,8 @@ namespace DataAccess.Concrete.InMemory
         public InMemoryWorkDal() 
         {
             _works = new List<Work> {
-                new Work{WorkId=1,WorkerId=1,WorkName="B YAZILIMI",State="%0",FinalDate="10.11.2022"},
-                new Work{WorkId=2,WorkerId=1,WorkName="A YAZILIMI",State="%100",FinalDate="10.06.2021"}
+                new Work{WorkId=1,WorkerId=1,WorkName="B YAZILIMI",ProgressStatus="%0",FinalDate= "10.11.2022"},
+                new Work{WorkId=2,WorkerId=1,WorkName="A YAZILIMI",ProgressStatus="%100",FinalDate="10.06.2021"}
             };
 
         }
@@ -54,12 +55,17 @@ namespace DataAccess.Concrete.InMemory
             return _works.Where(w=>w.WorkId==workerId).ToList();
         }
 
+        public List<WorkDetailDto> GetWorkDetails()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Work work)
         {
             Work workToUpdate = _works.SingleOrDefault(w => w.WorkId == work.WorkId);
             workToUpdate.WorkerId = work.WorkerId;
             workToUpdate.WorkName = work.WorkName;
-            workToUpdate.State = work.State;
+            workToUpdate.ProgressStatus = work.ProgressStatus;
             workToUpdate.FinalDate = work.FinalDate;
         }
     }

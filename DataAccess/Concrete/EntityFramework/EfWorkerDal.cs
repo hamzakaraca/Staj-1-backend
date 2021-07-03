@@ -1,37 +1,17 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using System.Linq;
+using Core.DataAccess.EntityFramework;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    class EfWorkerDal : IWorkerDal
+    public class EfWorkerDal : EfEntityRepositoryBase<Worker, WorkCenterContext>, IWorkerDal
     {
-        public void Add(Worker entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Worker entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Worker Get(Expression<Func<Worker, bool>> filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Worker> GetAll(Expression<Func<Worker, bool>> filter = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Worker entity)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

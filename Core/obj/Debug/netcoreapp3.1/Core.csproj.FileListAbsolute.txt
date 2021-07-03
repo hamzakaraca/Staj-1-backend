@@ -1,0 +1,9 @@
+C:\Users\hkara\source\repos\Staj\Core\bin\Debug\netcoreapp3.1\Core.deps.json
+C:\Users\hkara\source\repos\Staj\Core\bin\Debug\netcoreapp3.1\Core.dll
+C:\Users\hkara\source\repos\Staj\Core\bin\Debug\netcoreapp3.1\Core.pdb
+C:\Users\hkara\source\repos\Staj\Core\obj\Debug\netcoreapp3.1\Core.csprojAssemblyReference.cache
+C:\Users\hkara\source\repos\Staj\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfoInputs.cache
+C:\Users\hkara\source\repos\Staj\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfo.cs
+C:\Users\hkara\source\repos\Staj\Core\obj\Debug\netcoreapp3.1\Core.csproj.CoreCompileInputs.cache
+C:\Users\hkara\source\repos\Staj\Core\obj\Debug\netcoreapp3.1\Core.dll
+C:\Users\hkara\source\repos\Staj\Core\obj\Debug\netcoreapp3.1\Core.pdb

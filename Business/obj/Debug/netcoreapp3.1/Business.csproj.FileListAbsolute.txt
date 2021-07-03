@@ -12,3 +12,5 @@ C:\Users\hkara\source\repos\Staj\Business\bin\Debug\netcoreapp3.1\Entities.pdb
 C:\Users\hkara\source\repos\Staj\Business\obj\Debug\netcoreapp3.1\Business.csproj.CopyComplete
 C:\Users\hkara\source\repos\Staj\Business\obj\Debug\netcoreapp3.1\Business.dll
 C:\Users\hkara\source\repos\Staj\Business\obj\Debug\netcoreapp3.1\Business.pdb
+C:\Users\hkara\source\repos\Staj\Business\bin\Debug\netcoreapp3.1\Core.dll
+C:\Users\hkara\source\repos\Staj\Business\bin\Debug\netcoreapp3.1\Core.pdb

@@ -58,3 +58,5 @@ C:\Users\hkara\source\repos\Staj\ConsoleUI\bin\Debug\netcoreapp3.1\runtimes\win-
 C:\Users\hkara\source\repos\Staj\ConsoleUI\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\hkara\source\repos\Staj\ConsoleUI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\hkara\source\repos\Staj\ConsoleUI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\hkara\source\repos\Staj\ConsoleUI\bin\Debug\netcoreapp3.1\Core.dll
+C:\Users\hkara\source\repos\Staj\ConsoleUI\bin\Debug\netcoreapp3.1\Core.pdb

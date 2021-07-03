@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,5 +12,6 @@ namespace Business.Abstract
 
         List<Work> GetAllByWorkerId(int id);
         List<Work> GetAllByState(string message);
+        List<WorkDetailDto> GetWorkDetails();
     }
 }
