@@ -47,6 +47,7 @@ namespace DataAccess.Concrete.InMemory
 
         public List<Work> GetAll(Expression<Func<Work, bool>> filter = null)
         {
+            
             throw new NotImplementedException();
         }
 

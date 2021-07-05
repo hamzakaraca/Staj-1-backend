@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -17,24 +19,37 @@ namespace Business.Concrete
             _workerDal = workerDal;
         }
 
-        public void add(Worker worker)
+        public IResult Delete(Worker worker) 
         {
-            if (worker.FirstName.Length > 2)
+            _workerDal.Delete(worker);
+            return new SuccessResult(Messages.WorkerDeleted);
+        }
+        public IDataResult<List<Worker>> GetAll()
+        {
+            return new SuccessDataResult<List<Worker>>(_workerDal.GetAll(),Messages.WorkersListed);
+        }
+
+        public IDataResult<Worker> GetById(int id)
+        {
+            return new SuccessDataResult<Worker>(_workerDal.Get(w=>w.WorkerId==id));
+        }
+
+        public IResult Add(Worker worker)
+        {
+            if (worker.FirstName.Length < 2)
             {
-                _workerDal.Add(worker);
+                return new ErrorResult();
             }
-            else { Console.WriteLine("ekleme başarısız"); } ;
+            else {
+                _workerDal.Add(worker);
+                return new SuccessResult(Messages.WorkerAdded);
+            };
         }
 
-        public List<Worker> GetAll()
+        public IResult Update(Worker worker)
         {
-            return _workerDal.GetAll();
+            _workerDal.Update(worker);
+            return new SuccessResult(Messages.WorkerUpdated);
         }
-
-        public Worker GetById(int id)
-        {
-            return _workerDal.Get(w=>w.WorkerId==id);
-        }
-        
     }
 }

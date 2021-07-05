@@ -11,20 +11,34 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            WorkTest();
+            //WorkTest();
             //Test2();
             //Test3();
             //AddingWorker();
+            //DeleteWorker();
+            WorkManager workManager = new WorkManager(new EfWorkDal());
+            
+            
+            foreach (var work in workManager.GetAll().Data)
+            {
+                Console.WriteLine(work.WorkName);
+            }
+        }
+
+        private static void DeleteWorker() 
+        {
+            WorkerManager workerManager = new WorkerManager(new EfWorkerDal());
+            workerManager.Delete(new Worker {WorkerId=2003 });
         }
 
         private static void AddingWorker()
         {
             WorkerManager workerManager = new WorkerManager(new EfWorkerDal());
-            workerManager.add(new Worker { FirstName = "Ha", LastName = "Palaska" });
-            foreach (var worker in workerManager.GetAll())
-            {
-                Console.WriteLine(worker.FirstName);
-            }
+            workerManager.Add(new Worker { FirstName = "Gülnur", LastName = "Karaca" });
+            //foreach (var worker in workerManager.GetAll())
+            //{
+            //    Console.WriteLine(worker.FirstName);
+            //}
         }
 
         private static void Test3()
@@ -42,10 +56,20 @@ namespace ConsoleUI
         private static void WorkTest()
         {
             WorkManager workManager = new WorkManager(new EfWorkDal());
-            foreach (var work in workManager.GetWorkDetails())
+            var result = workManager.GetWorkDetails();
+
+            if (result.Success==true)
             {
-                Console.WriteLine(work.WorkName + " " + work.ProgressStatus + " " + work.WorkerName);
+                foreach (var work in result.Data)
+                {
+                    Console.WriteLine(work.WorkName + " " + work.ProgressStatus + " " + work.WorkerName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+            
         }
     }
 }
