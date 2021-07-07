@@ -19,10 +19,70 @@ namespace WebAPI.Controllers
         {
             _planService = planService;
         }
-        public List<Plan> Get() 
+        [HttpGet("getall")]
+        public IActionResult GetAll() 
         {
             var result = _planService.GetAll();
-            return result.Data;
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+            
         }
+
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id) 
+        {
+            var result = _planService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getplansdetail")]
+        public IActionResult GetPlanDetail() 
+        {
+            var result = _planService.GetPlanDetail();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("add")]
+        public IActionResult Add(Plan plan) 
+        {
+            var result = _planService.Add(plan);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("update")]
+        public IActionResult Update(Plan plan)
+        {
+            var result = _planService.Update(plan);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("delete")]
+        public IActionResult Delete(Plan plan)
+        {
+            var result = _planService.Delete(plan);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
     }
 }

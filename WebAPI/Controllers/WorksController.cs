@@ -23,12 +23,71 @@ namespace WebAPI.Controllers
             _workService = workService;
         }
 
-        [HttpGet]
-        public List<Work> Get() 
+        [HttpGet("getall")]
+        public IActionResult GetAll() 
         {
             
             var result = _workService.GetAll();
-            return result.Data;
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
+
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id) 
+        {
+            var result = _workService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyworkerid")]
+        public IActionResult GetByWorkerId(int workerId) 
+        {
+            var result = _workService.GetAllByWorkerId(workerId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("add")]
+        public IActionResult Add(Work work) 
+        {
+            var result = _workService.Add(work);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("update")]
+        public IActionResult Update(Work work)
+        {
+            var result = _workService.Update(work);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("delete")]
+        public IActionResult Delete(Work work)
+        {
+            var result = _workService.Delete(work);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+
     }
 }

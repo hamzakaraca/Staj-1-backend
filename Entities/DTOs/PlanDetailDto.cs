@@ -3,13 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.Concrete
+namespace Entities.DTOs
 {
-    public class Work:IEntity
+    public class PlanDetailDto:IDto
     {
-        public int WorkId { get; set; }
-        public int WorkerId { get; set; }
+        public int PlanId { get; set; }
         public string WorkName { get; set; }
+        public string WorkerName { get; set; }
         public string ProgressStatus { get; set; }
         public string FinalDate { get; set; }
     }

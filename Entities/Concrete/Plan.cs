@@ -9,6 +9,7 @@ namespace Entities.Concrete
     {
         public int PlanId { get; set; }
         public int WorkId { get; set; }
+        public int WorkerId { get; set; }
         public string Direction { get; set; }
     }
 }

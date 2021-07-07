@@ -19,11 +19,59 @@ namespace WebAPI.Controllers
         {
             _workerService = workerService;
         }
-
-        public List<Worker> Get() 
+        [HttpGet("getall")]
+        public IActionResult GetAll() 
         {
             var result = _workerService.GetAll();
-            return result.Data;
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id) 
+        {
+            var result = _workerService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("add")]
+        public IActionResult Add(Worker worker) 
+        {
+            var result = _workerService.Add(worker);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("delete")]
+        public IActionResult Delete(Worker worker) 
+        {
+            var result = _workerService.Delete(worker);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        
+        [HttpPost("update")]
+        public IActionResult Update(Worker worker) 
+        {
+            var result = _workerService.Update(worker);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }

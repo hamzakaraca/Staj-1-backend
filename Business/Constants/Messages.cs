@@ -22,7 +22,7 @@ namespace Business.Constants
         public static string WorkUpdated = "İş güncellendi.";
         public static string WorkerUpdated = "İşçi güncellendi.";
         public static string PlanUpdated = "Plan güncellendi.";
-
+        public static string PlanDetailListed = "Planların detayları listelendi.";
 
     }
 }

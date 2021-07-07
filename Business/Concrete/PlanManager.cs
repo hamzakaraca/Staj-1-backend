@@ -3,6 +3,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,11 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<Plan>(_planDal.Get(p=> p.PlanId==planId));
             
+        }
+
+        public IDataResult<List<PlanDetailDto>> GetPlanDetail()
+        {
+            return new SuccessDataResult<List<PlanDetailDto>>(_planDal.GetPlanDetails(),Messages.PlanDetailListed);
         }
 
         public IResult Update(Plan plan)
