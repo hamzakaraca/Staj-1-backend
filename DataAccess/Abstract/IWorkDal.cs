@@ -10,5 +10,6 @@ namespace DataAccess.Abstract
     public interface IWorkDal:IEntityRepository<Work>
     {
         List<WorkDetailDto> GetWorkDetails();
+        
     }
 }

@@ -11,6 +11,12 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            WorkerManager workerManager = new WorkerManager(new EfWorkerDal());
+             
+            foreach (var worker in workerManager.GetAll().Data)
+            {
+                Console.WriteLine(worker.FirstName);
+            }
             //WorkTest();
             //Test2();
             //Test3();
@@ -21,7 +27,7 @@ namespace ConsoleUI
             
             foreach (var work in workManager.GetAll().Data)
             {
-                Console.WriteLine(work.WorkName);
+                Console.WriteLine(work.FinalDate);
             }
         }
 
