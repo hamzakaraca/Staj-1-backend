@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -34,6 +36,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Worker>(_workerDal.Get(w=>w.WorkerId==id));
         }
 
+        [ValidationAspect(typeof(WorkerValidator))]
         public IResult Add(Worker worker)
         {
             if (worker.FirstName.Length < 2)

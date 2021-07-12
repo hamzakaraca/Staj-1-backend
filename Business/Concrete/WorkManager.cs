@@ -1,10 +1,14 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +30,10 @@ namespace Business.Concrete
             _workDal = workDal;
         }
 
+        [ValidationAspect(typeof(WorkValidator))]
         public IResult Add(Work work)
         {
-            if (work.WorkName.Length<2)
-            {
-                return new ErrorResult(Messages.WorkNameInvalid);
-            }
+            
             _workDal.Add(work);
             return new SuccessResult(Messages.WorkAdded);
         }

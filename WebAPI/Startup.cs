@@ -30,8 +30,8 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<IWorkService,WorkManager>();
-            services.AddSingleton<IWorkDal,EfWorkDal>();
+            //services.AddSingleton<IWorkService,WorkManager>();
+            //services.AddSingleton<IWorkDal,EfWorkDal>();
             services.AddSingleton<IWorkerService,WorkerManager>();
             services.AddSingleton<IWorkerDal,EfWorkerDal>();
             services.AddSingleton<IPlanService,PlanManager>();
