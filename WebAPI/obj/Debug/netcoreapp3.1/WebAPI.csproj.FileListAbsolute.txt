@@ -87,3 +87,4 @@ C:\Users\hkara\source\repos\Staj\WebAPI\bin\Debug\netcoreapp3.1\Autofac.Extensio
 C:\Users\hkara\source\repos\Staj\WebAPI\bin\Debug\netcoreapp3.1\Autofac.Extras.DynamicProxy.dll
 C:\Users\hkara\source\repos\Staj\WebAPI\bin\Debug\netcoreapp3.1\Castle.Core.dll
 C:\Users\hkara\source\repos\Staj\WebAPI\bin\Debug\netcoreapp3.1\FluentValidation.dll
+C:\Users\hkara\source\repos\Staj\WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll

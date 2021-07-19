@@ -1,8 +1,10 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
@@ -30,10 +32,15 @@ namespace Business.Concrete
             _workDal = workDal;
         }
 
+        [SecuredOperation("work.add,admin")]
         [ValidationAspect(typeof(WorkValidator))]
         public IResult Add(Work work)
         {
-            
+            IResult result = BusinessRules.Run(CheckIfWorkNameExists(work.WorkName));
+            if (result !=null)
+            {
+                return result;
+            }
             _workDal.Add(work);
             return new SuccessResult(Messages.WorkAdded);
         }
@@ -78,6 +85,16 @@ namespace Business.Concrete
         {
             _workDal.Update(work);
             return new SuccessResult(Messages.WorkUpdated);
+        }
+
+        private IResult CheckIfWorkNameExists(string workName) 
+        {
+            var result = _workDal.GetAll(w => w.WorkName == workName).Any();
+            if (result)
+            {
+                return new ErrorResult(Messages.WorkNameAlreadyExists);
+            }
+            return new SuccessResult();
         }
     }
 }
