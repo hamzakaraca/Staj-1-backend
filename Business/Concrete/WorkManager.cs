@@ -2,6 +2,7 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -34,6 +35,7 @@ namespace Business.Concrete
 
         [SecuredOperation("work.add,admin")]
         [ValidationAspect(typeof(WorkValidator))]
+        [CacheRemoveAspect("IWorkService.Get")]
         public IResult Add(Work work)
         {
             IResult result = BusinessRules.Run(CheckIfWorkNameExists(work.WorkName));
@@ -45,15 +47,17 @@ namespace Business.Concrete
             return new SuccessResult(Messages.WorkAdded);
         }
 
+        [CacheRemoveAspect("IWorkService.Get")]
         public IResult Delete(Work work)
         {
             _workDal.Delete(work);
             return new SuccessResult(Messages.WorkDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Work>> GetAll()
         {
-            if (DateTime.Now.Hour==22)
+            if (DateTime.Now.Hour==21)
             {
                 return new ErrorDataResult<List<Work>>(Messages.MaintenanceTime);
             }
@@ -71,6 +75,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Work>>(_workDal.GetAll(w => w.WorkerId == id));
         }
 
+        [CacheAspect]
         public IDataResult<Work> GetById(int workId)
         {
             return new SuccessDataResult<Work>(_workDal.Get(w => w.WorkId == workId));
@@ -81,6 +86,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<WorkDetailDto>>(_workDal.GetWorkDetails());
         }
 
+        [CacheRemoveAspect("IWorkService.Get")]
         public IResult Update(Work work)
         {
             _workDal.Update(work);
