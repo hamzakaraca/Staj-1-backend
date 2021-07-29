@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
+
 
 namespace WebAPI.Controllers
 {
@@ -22,6 +23,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll() 
         {
+            Thread.Sleep(2000);
             var result = _planService.GetAll();
             if (result.Success)
             {
@@ -45,6 +47,7 @@ namespace WebAPI.Controllers
         [HttpGet("getplansdetail")]
         public IActionResult GetPlanDetail() 
         {
+            Thread.Sleep(2000);
             var result = _planService.GetPlanDetail();
             if (result.Success)
             {
